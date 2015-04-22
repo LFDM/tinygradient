@@ -9,7 +9,7 @@
         module.exports = factory(require('tinycolor2'));
     }
     else if (typeof define === 'function' && define.amd) {
-        define(['tinycolor'], factory);
+        define(['tinycolor2'], factory);
     }
     else {
         root.tinygradient = factory(root.tinycolor);
@@ -295,11 +295,11 @@
         for (var i=0, l=this.stops.length; i<l-1; i++) {
             start = this.stops[i].color.toHsv();
             end = this.stops[i+1].color.toHsv();
-                
+
             if (parametrized) {
                 trig = (start.h < end.h && end.h-start.h < 180) || (start.h > end.h && start.h-end.h > 180);
             }
-            
+
             // rgb interpolation if one of the steps in grayscale
             if (start.s===0 || end.s===0) {
                 gradient = gradient.concat(Utils.rgb(this.stops[i], this.stops[i+1], substeps[i]));
